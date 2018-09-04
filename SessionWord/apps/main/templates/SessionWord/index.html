@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Session Words</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+
+    <style media="screen">
+
+      .main_frame{
+          width: 800px;
+          margin: 20px auto 0px auto;
+          text-align: center;
+      }
+      .left_frame{
+          text-align: left;
+          width: 350px;
+          display:inline-block;
+          border-right: 1pt solid grey;
+      }
+      .right_frame{
+          text-align: right;
+          width: 350px;
+          display:inline-block;
+          vertical-align: top;
+      }
+      .message{
+        display: block;
+      }
+      .message-blue{
+          color: blue;
+
+      }
+      .message-red{
+          color: red;
+      }
+      .message-green{
+          color: green;
+      }
+      .bigFont{
+        font-size:  20px;
+      }
+      .time{
+        font-size: 80%;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="main_frame">
+      <div class="left_frame">
+        <form id='sessionWords' action="/session_words/add_word" method="post">
+          {% csrf_token %}
+
+            <h1>Add a new word</h1>
+              <input type="text" name="inputWord" value="Happy">
+          <p>
+            <label for="color">Choose color</label><br>
+            <input type="radio" name="color" value="red" id="red" checked>
+            <label for="red">Red</label>
+            <input type="radio" name="color" value="green" id="green">
+            <label for="green">Green</label>
+
+
+            <input type="radio" name="color" value="blue" id="blue">
+            <label for="blue">Blue</label>
+
+          </p>
+          <p>
+            <input type="checkbox" name="bigFont" value="bigFont" checked>
+            <label for="bigFont">show in BIG fonts !</label>
+          </p>
+          <p><input type="submit"  value="Add to Session"> </p>
+        </form>
+
+      </div>
+      <div class="right_frame">
+        <a href="/session_words/clear" class="pure-button">Clear Session</a>
+        <table>
+
+          {% for temp in request.session.inputWord%}
+
+          <tr>
+            <td class="message-{{temp.color}} {{temp.bigFont}}">  {{temp.inputWord}}</td>
+            <td class="time">- added on {{temp.dateTime}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+
+
+      </div>
+    </div>
+
+  </body>
+</html>
