@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Survey</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+
+    <style media="screen">
+      .message{
+        width: 800px;
+        margin: 20px auto 0px auto;
+        text-align: center;
+        background-color: yellow;
+        }
+      .frame{
+        width: 800px;
+        margin: 20px auto 0px auto;
+        text-align: center;
+      }
+      .pure-table{
+        text-align: left;
+        width: 800px;
+      }
+      .underline{
+        text-align: left;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="message">
+        Thanks for submitting this form ! You have submitted this form {{request.session.times}} times now
+    </div>
+    <div class="frame">
+
+          <table class="pure-table">
+            <div class="underline">
+              Submitted Information :
+            </div>
+            <tr>
+              <td><label for="name">Name :</label> </td>
+              <td> {{request.session.myName}} </td>
+            </tr>
+            <tr>
+              <td><label for="location">Location :</label> </td>
+              <td> {{request.session.location}} </td>
+
+
+              </td>
+            </tr>
+            <tr>
+              <td><label for="language">Languate :</label> </td>
+              <td> {{request.session.language}} </td>
+
+
+              </td>
+            </tr>
+            <tr>
+              <td><label for="Comment">Comment :</label> </td>
+              <td> {{request.session.comment}} </td>
+
+
+              </td>
+            </tr>
+          </table>
+          <a href="/back" class="pure--button">back</a>
+    </div>
+  </body>
+</html>
