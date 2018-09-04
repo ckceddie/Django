@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+    <style media="screen">
+      .main_frame{
+          width: 800px;
+          margin: 20px auto 0px auto;
+          text-align: center;
+        }
+      .pure-table{
+        width: 700px;
+        text-align: left;
+      }
+
+
+
+    </style>
+
+    <title>Adadon</title>
+  </head>
+  <body>
+    <div class="main_frame">
+        <h1>Amadon Store </h1>
+
+
+            <table class="pure-table">
+                <thead>
+                  <tr>
+                    <td>Item</td>
+                    <td>Price</td>
+                    <td>Actions</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <form action="/buy" method="post" id="1">
+                    {% csrf_token %}
+                            <tr>
+                              <td>Dojo T-shirt</td>
+                              <td>$19.99</td>
+                              <td>
+                                  <select name='quantity' >
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                  </select>
+                                  <input type="hidden" name="id" value="1">
+                                  <input type="submit" form="1" value="buy">
+
+                              </td>
+                            </tr>
+                </form>
+
+
+                <form action="/buy" method="post" id="2">
+                  {% csrf_token %}
+
+                  <tr>
+                    <td>Dojo dress</td>
+                    <td>$25</td>
+                    <td>
+                        <select name='quantity' >
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                        </select>
+                        <input type="hidden" name="id" value="2">
+                        <input type="submit" form="2" value="buy">
+
+                    </td>
+                  </tr>
+
+                  </form>
+                  <form action="/buy" method="post" id="3">
+                    {% csrf_token %}
+                  <tr>
+                    <td>Dojo Cup</td>
+                    <td>$5</td>
+                    <td>
+                        <select name='quantity' >
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                        </select>
+                        <input type="hidden" name="id" value="3">
+                        <input type="submit" form="3" value="buy">
+
+                    </td>
+                  </tr>
+
+                </form>
+                  <form action="/buy" method="post" id="4">
+                    {% csrf_token %}
+                  <tr>
+                    <td>HTML book</td>
+                    <td>$35</td>
+                    <td>
+                        <select name='quantity' >
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                        </select>
+                        <input type="hidden" name="id" value="4">
+                        <input type="submit" form="4" value="buy">
+
+                    </td>
+                  </tr>
+                                  </form>
+                </tbody>
+            </table>
+        </form>
+    </div>
+  </body>
+</html>

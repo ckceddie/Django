@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+    <style media="screen">
+      .main_frame{
+          width: 800px;
+          margin: 20px auto 0px auto;
+          text-align: center;
+        }
+
+
+    </style>
+
+    <title>Amadon  Checkout</title>
+  </head>
+  <body>
+    <div class="main_frame">
+
+    <h4>Thank you for your business !</h4>
+    <p>We charged your credit card for {{total}}</p>
+    <p>You have ordered {{request.session.qty}} items so far and spent ${{request.session.amount}} with Amadon.com</p>
+    <p><a href="/amadon">Go back</a> </p>
+
+  </div>
+  </body>
+</html>
