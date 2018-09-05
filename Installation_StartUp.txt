@@ -1,0 +1,190 @@
+
+[ Installation ]
+Create a virtual environment in your virtual environment folder.
+
+If you're using Mac:
+    > virtualenv djangoEnv
+    > source djangoEnv/bin/activate
+    (djangoEnv)>pip install Django==1.10
+
+If you're using a PC:
+> python -m virtualenv djangoEnv
+> call djangoEnv/Scripts/activate
+(djangoEnv)>pip install django
+
+
+
+        [ Open Project]
+        [Step 1]---------------------------------------------------------
+            Creating a project
+            Let's make a project! Navigate to a location where you want to create your project 
+            (e.g. either your desktop folder or your user folder). 
+            We need to do a little set-up work to get our Django project up and running:
+
+
+                    > django-admin startproject main
+
+        [Step 2]----------------------------------------------------------
+
+            This is going to create the main project for us, from which we’re going to have to do 
+            a few small set-up things before we can really get going:
+            NOTE: All our videos are using bash, but to use the same commands on Windows Command Prompt, 
+            the analogous command for touch is nul>
+            Navigate into the main directory that you just created. 
+            At this point you could run "python manage.py runserver" and 
+            take a look at what your development server delivers to the browser.
+
+                    > cd main
+                    # Make a new apps directory
+                    > mkdir apps
+                    # Navigate into apps
+                    > cd apps
+
+        [Step 3]----------------------------------------------------------
+            Next you'll create an __init__.py file. 
+            This lets the Python interpreter know that this folder is present and may be accessed. 
+            Now, other Python modules can look in this directory and access the files and 
+            therefore the code they contain. Don't forget this step!
+        
+                    # Bash: (Mac, Linux)
+                    > touch __init__.py
+                    # PCs: (Command Prompt)
+                    > nul> __init__.py
+        [Step 4]----------------------------------------------------------
+
+                Notice that when you started a project a manage.py file was automatically created. 
+                That file can be called using one of several commands to request a specific operation. 
+                Let's do that from within the apps directory to start a new app.
+
+                    > python ../manage.py startapp first_app
+                    > python ../manage.py startapp first_app1
+                    > python ../manage.py startapp first_app2
+
+
+
+                By running python ../manage.py startapp first_app 
+                you've created a new app. In your apps folder – let's make sure we can use our new app. 
+                We have to do a couple more things before we can get started.
+
+        [Step 5]----------------------------------------------------------
+
+            In settings.py (this file lives inside the main directory. 
+            The main directory is alongside apps and manage.py) 
+            we are going to have to add our application to the project. 
+            That means adding apps.first_app to our INSTALLED_APPS list:
+
+            [before]
+                    # Inside main/settings.py
+                        INSTALLED_APPS = [
+                            'django.contrib.admin',
+                            'django.contrib.auth',
+                            'django.contrib.contenttypes',
+                            'django.contrib.sessions',
+                            'django.contrib.messages',
+                            'django.contrib.staticfiles',
+                        ]
+
+            [After]
+                        # BECOMES:
+                        INSTALLED_APPS = [
+            >              'apps.first_app', ### added this line!
+                            'django.contrib.admin',
+                            'django.contrib.auth',
+                            'django.contrib.contenttypes',
+                            'django.contrib.sessions',
+                            'django.contrib.messages',
+                            'django.contrib.staticfiles',
+                        ]
+
+        [Done]----------------------------------------------------------
+                   
+                   
+                   
+                    - [ Run project ]
+          
+            Go to your 'main' folder and run
+                >   python manage.py runserver 
+                    from the terminal. 
+            Then proceed to localhost:8000. 
+            You should see a simple page congratulating you on a Django-powered page. 
+            Stop the server now (ctrl-C) before moving on to the next step.
+
+
+-------------------------------------------------------------------
+[URL and View]
+[step 1 - change default URL]
+    Now open main/urls.py in your text editor. 
+    We're going to modify this document in order to use routes from our first_app:
+            >>
+                from django.conf.urls import url, include # Notice we added include
+                from django.contrib import admin
+                urlpatterns = [
+                    url(r'^', include('apps.first_app.urls')) # And now we use the include function to pull in our first_app.urls...
+                ]
+            >>
+[step 2 - create own default URL file]
+  
+    Our app's urls file doesn't exist yet. Let's make it. From the command line:
+
+            > cd apps/first_app
+            > touch urls.py
+
+[step 3 - modify own default URL file]
+    Open urls.py in your text editor. Add the code below:
+
+            (apps/first_app/urls.py)
+            >>
+            from django.conf.urls import url
+            from . import views           # This line is new!
+            urlpatterns = [
+                url(r'^$', views.index)     # This line has changed!
+            ]
+            >>
+
+            [Example]--
+            urlpatterns = [
+            url(r'^$', views.index),     # This line has changed!
+            url(r'^reset$', views.reset),     # This line has changed!
+            url(r'^generator$', views.generator)     # This line has changed!
+
+                    ]
+
+        Here is a cheat sheet for expressions you'll be using regularly:
+
+                '^' Matches the following characters at the beginning of a string. Example: '^a' matches 'anna' but not 'banana'.
+                '$' Matches the previous characters at the end of a string. Example: 'a$' matches 'anna' and 'banana' but not 'fan'.
+                '[]' Matches any value in a range. Example: '[0-9]' matches '9' and '9s'.
+                '{n}' Matches n number or more repetitions of the preceding pattern. Example: '[0-9]{2}' matches '91' and '9834' but not '9'
+                \d Matches digits.  Example: "\d" matches "8" and "877x"
+                \d+ matches a string with one or more digits
+                \w Matches characters.
+                \w+ matches a string with one or more character/word
+
+[option]
+create folder of 'templates' and 'static' into (apps/first_app)
+
+[step 4 - Views ]
+
+Let’s build our first views function, index, inside of views:
+(apps/first_app/views.py)
+        >>>>
+                from django.shortcuts import render, HttpResponse, redirect
+                # the index function is called when root is visited
+                def index(request):
+                    response = "Hello, I am your first request!"
+                    return HttpResponse(response)
+         >>>>
+
+
+--------
+    virtualenv djangoEnv
+source djangoEnv/bin/activate
+
+
+        cd desktop/python/django/assignment
+
+
+python manage.py migrate
+
+
+python manage.py runserver
