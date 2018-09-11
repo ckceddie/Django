@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Users Edit</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <style media="screen">
+      .main_frame{
+        width: 800px;
+        margin: 10px auto 0px auto;
+        /* text-align:center; */
+      }
+      ul{
+        padding: 0px;
+        list-style: none;
+      }
+
+      li{
+        padding:5px 0px 5px 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main_frame">
+      {% for user in users %}
+      <h1>Edit User {{user.id}} </h1>
+        <ul>
+          <form action="/users/update" method="post">
+            {% csrf_token %}
+
+
+          <li>First Name</li>
+          <li><input type="hidden" name="id" value="{{user.id}}"> </li>
+
+          <li><input type="text" name="first_name" value="{{user.first_name}}"> </li>
+          <li>Last Name</li>
+          <li><input type="text" name="last_name" value="{{user.last_name}}"> </li>
+          <li>Email </li>
+          <li><input type="text" name="email" value="{{user.email}}"> </li>
+          <li><input type="submit" name="submit" value="Update"> </li>
+        </ul>
+
+                  </form>
+        <h4><a href="/users/{{user.id}}">Show</a> | <a href="/users"> Go back </a> </h4>
+        {% endfor %}
+    </div>
+  </body>
+</html>

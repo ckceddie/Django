@@ -176,15 +176,80 @@ Let’s build our first views function, index, inside of views:
          >>>>
 
 
---------
-    virtualenv djangoEnv
-source djangoEnv/bin/activate
+------------------------------------------------------------------------------
+    	virtualenv djangoEnv
+	source djangoEnv/bin/activate
+
+	
+	django-admin startproject main
+                 > cd main
+			python manage.py migrate
+
+                    # Make a new apps directory
+                    > mkdir apps
+                    # Navigate into apps
+                    > cd apps
+
+        
+                    # Bash: (Mac, Linux)
+                    > touch __init__.py
+                    # PCs: (Command Prompt)
+                    > nul> __init__.py
+
+                    > python ../manage.py startapp first_app
+                    > python ../manage.py startapp first_app1
+                    > python ../manage.py startapp first_app2
+
+	In settings.py 
+                        # BECOMES:
+                        INSTALLED_APPS = [
+            >              'apps.first_app', ### added this line!
+                            'django.contrib.admin',
+                            'django.contrib.auth',
+                        ]
 
 
-        cd desktop/python/django/assignment
+	Open urls.py 
+ 		from django.conf.urls import url, include  #<< Notice we added include
+                from django.contrib import admin
+                urlpatterns = [
+                    url(r'^', include('apps.first_app.urls'))
+		]
+
+            > cd apps/first_app
+            > touch urls.py
+
+    	Open urls.py in your text editor. Add the code below:
+
+            (apps/first_app/urls.py)
+            >>
+            from django.conf.urls import url
+            from . import views           # This line is new!
+            urlpatterns = [
+                url(r'^$', views.index)     # This line has changed!
+            ]
+            >>
+
+            [Example]--
+            urlpatterns = [
+            url(r'^$', views.index),     # This line has changed!
+            url(r'^reset$', views.reset),     # This line has changed!
+            url(r'^generator$', views.generator)     # This line has changed!
+
+                    ]
+	
+	create folder of 'templates' and 'static' into (apps/first_app)
+
+	(apps/first_app/views.py)
+        >>>>
+                from django.shortcuts import render, HttpResponse, redirect
+                # the index function is called when root is visited
+                def index(request):
+                    response = "Hello, I am your first request!"
+                    return HttpResponse(response)
+         >>>>
 
 
-python manage.py migrate
 
 
 python manage.py runserver

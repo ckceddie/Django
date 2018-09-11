@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Users Edit</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <style media="screen">
+      .main_frame{
+        width: 800px;
+        margin: 10px auto 0px auto;
+        /* text-align:center; */
+      }
+      ul{
+        padding: 0px;
+        list-style: none;
+      }
+
+      li{
+        padding:5px 0px 5px 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main_frame">
+      {% for user in users %}
+      <h1>Edit User {{user.id}} </h1>
+        <ul>
+          <li>Full Name : {{user.first_name}} {{user.last_name}}</li>
+          <li>Email : {{user.email}} </li>
+          <li>Created at : {{user.created_at}} </li>
+        </ul>
+
+        <h4><a href="/users/{{user.id}}/edit"> Edit </a> | <a href="/users/{{user.id}}/delete"> Delete </a> </h4>
+        {% endfor %}
+    </div>
+
+
+  </body>
+</html>

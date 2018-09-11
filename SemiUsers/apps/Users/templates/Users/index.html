@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Users Index</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+    <style media="screen">
+      .main_frame{
+        width: 800px;
+        margin: 10px auto 0px auto;
+        /* text-align:center; */
+      }
+    </style>
+  </head>
+  <body>
+      <div class="main_frame">
+        <h1>Users</h1>
+          <table class="pure-table">
+                <thead>
+                    <tr>
+                      <td>ID</td>
+                      <td>Full Name</td>
+                      <td>Email</td>
+                      <td>created_at</td>
+                      <td>Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                  {{subject}}
+                  {% for user in users %}
+                  <tr>
+
+                    <td>{{user.id}}</td>
+                    <td>{{user.first_name}} {{user.last_name}}</td>
+                    <td>{{user.email }}</td>
+                    <td>{{user.created_at}}</td>
+                    <td>
+                      <!-- <form action="users/show/{%url 'my_show' id=1 %}" method="post">
+                        <input type="submit" value="Show"> -->
+                    <!-- </form> -->
+                     <a href="users/{{user.id}}"> Show </a> | <a href="users/{{user.id}}/edit"> Edit </a> | <a href="users/{{user.id}}/delete"> Delete  </a>  </td>
+                  </tr>
+                  {% endfor  %}
+                </tbody>
+
+          </table>
+        <h3><a href="/users/new">  Add a new user </a></h3>
+      </div>
+  </body>
+</html>
