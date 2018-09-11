@@ -10,18 +10,34 @@
         margin: 10px auto 0px auto;
         /* text-align:center; */
       }
-      ul{
+      .error{
+        width: 800px;
+        margin: 10px auto 0px auto;
+        /* text-align:center; */
+        color: red;
+      }
+      .main_frame ul{
         padding: 0px;
         list-style: none;
       }
 
-      li{
+      .main_frame li{
         padding:5px 0px 5px 0px;
       }
     </style>
   </head>
   <body>
+    <div class="error">
+      {% if errors %}
+             <ul>
+                 {% for error in errors %}
+                 <li>{{ error }}</li>
+                 {% endfor %}
+             </ul>
+         {% endif %}
+    </div>
     <div class="main_frame">
+
       {% for user in users %}
       <h1>Edit User {{user.id}} </h1>
         <ul>
