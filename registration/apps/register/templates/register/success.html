@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+    <style media="screen">
+      .frame_main{
+        width: 800px;
+        margin: 10px auto 0px auto;
+        /* text-align:center; */
+      }
+      h3{
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame_main">
+
+      <h1>Success ! Welcome {{ first_name}} {{ last_name}}
+  </h1>
+      <h3>{{message}}</h3>
+      <h4> session ID : {{ request.session.id }}</h4>
+      <a href="/">Back</a>
+    </div>
+  </body>
+</html>
