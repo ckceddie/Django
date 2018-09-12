@@ -56,6 +56,7 @@ def register(request):
 
 
 def login(request):
+    # ========= [ use try because objects.get ]=============
     try:
         findData= users.objects.get(email=request.POST['email'],password=request.POST['password'])
     except:
@@ -77,12 +78,16 @@ def login(request):
             }
         return render(request,"register/success.html",context)
 
+
 def hasNumbers(inputString):
+    # ========= [ for Validation check digit]=============
+
     return any(char.isdigit() for char in inputString)
 
 def validation(request):
     # ================= [ Validation ]=========================
     errors =[]
+
     if len(request.POST['first_name']) < 2:
         errors.append("First name cannot be less than 2 characters;")
 
@@ -92,6 +97,7 @@ def validation(request):
     if hasNumbers(request.POST['first_name']):
         errors.append("First Name - Error : letters only ( Number should not included)")
 
+    # ========= [ for Validation check char only (not num and sysbol)]=============
     if not request.POST['last_name'].isalpha():
         errors.append("Last Name - Error : letters only")
     if hasNumbers(request.POST['first_name']):
