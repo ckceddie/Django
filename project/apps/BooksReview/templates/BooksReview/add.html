@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Books - Home</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+    <style media="screen">
+      .frame_main{
+        width: 1000px;
+        margin: 0px auto 0px auto;
+        /* text-align:center; */
+      }
+      .frame_top{
+        width: 1000px;
+        margin: 0px;
+        display: block;
+      }
+      .top_banner{
+        width:450px;
+        display: inline-block;
+        /* border: 1pt grey solid; */
+      }
+      .top_menu{
+        width: 450px;
+        display: inline-block;
+        text-align: right;
+        vertical-align: center;
+      }
+      h1{
+        margin:3px;
+      }
+      .frame_error{
+        width: 1000px;
+        margin: 10px;
+        display: block;
+        color: red;
+        font-size: 9pt;
+      }
+      .pure-table{
+        border: 0px;
+
+      }
+      .pure-table td{
+        border:0px;
+        width:120px;
+      }
+      .frame_left{
+        width: 550px;
+        padding : 5px;
+        display: inline-block;
+        vertical-align: top;
+
+      }
+
+      .frame_left li{
+        list-style-type: none;
+        margin: 10px;
+      }
+
+      .frame_right{
+        width: 20px;
+        padding : 5px;
+        display: inline-block;
+        vertical-align: bottom;
+        text-align: left;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="frame_main">
+        <div class="frame_top">
+          <div class="top_banner">
+                {{alias}} [{{request.session.id}}]
+
+          </div>
+          <div class="top_menu">
+            <p></p>
+           <a href="/">Home</a> || <a href="addBook">Add book & Review</a> || <a href="logout">Logout</a>
+          </div>
+        </div>
+
+        <div class="frame_error">
+
+        </div>
+        <form id="add_book" action="add" method="post">
+            {% csrf_token %}
+
+        <div class="frame_left">
+
+          <h2>Add a New Book Title and a Review:</h2>
+            <ul>
+              <li>Book Tittle :  <input type="text" name="title" value="" size="50" ></li>
+              <li>Author:
+                  <ul>
+                    <li>Choose from the list :
+                        <select form="add_book" name="author_list">
+                          <option value=""> </option>
+                          {% for AL in author_list %}
+                          <option value="{{AL.author}}">{{AL.author}}</option>
+                          {% endfor%}
+                        </select>
+                      </li>
+                    <li>Or add a new author : <input type="text" name="author" value=""> </li>
+                  </ul>
+
+              </li>
+              <li>Review:</li>
+              <ul>
+
+               <li><textarea name="review" rows="4" cols="40" form="add_book"></textarea> </li>
+              </ul>
+              <li>Rating :
+              <select form="add_book" name="rate">
+                  <option value="5">5</option>
+                  <option value="4">4</option>
+                  <option value="3">3</option>
+                  <option value="2">2</option>
+                  <option value="1">1</option>
+              </select> stars </li>
+              <li> </li>
+            </ul>
+
+        </div>
+        <div class="frame_right">
+            <input type="submit" value="Add Book and Review">
+        </div>
+                  </form>
+    </div>
+  </body>
+</html>

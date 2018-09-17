@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Books - Home</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+
+    <style media="screen">
+      .frame_main{
+        width: 1000px;
+        margin: 0px auto 0px auto;
+        /* text-align:center; */
+      }
+      .frame_top{
+        width: 1000px;
+        margin: 0px;
+        display: block;
+      }
+      .top_banner{
+        width:450px;
+        display: inline-block;
+        /* border: 1pt grey solid; */
+      }
+      .top_menu{
+        width: 450px;
+        display: inline-block;
+        text-align: right;
+        vertical-align: center;
+      }
+      h1{
+        margin:3px;
+      }
+      .frame_error{
+        width: 1000px;
+        margin: 10px;
+        display: block;
+        color: red;
+        font-size: 9pt;
+      }
+
+      .pure-table{
+        border: 0px;
+
+      }
+      .pure-table td{
+        border:0px;
+        width:120px;
+      }
+      .frame_left{
+        width: 550px;
+        padding : 5px;
+        display: inline-block;
+        vertical-align: top;
+
+      }
+      .frame_right{
+        width: 350px;
+        padding : 5px;
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      li{
+        list-style-type: none;
+        margin: 10px;
+      }
+      .rating{
+        font-size: 9pt;
+        font-style: italic;
+      }
+      .review{
+        font-size: 11pt;
+        /* font-style: italic; */
+      }
+      .review_div{
+        border-top: 1px solid grey;
+      }
+
+
+      .right_sm{
+        text-align: right;
+        font-size: 9pt;
+      }
+      .space{
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame_main">
+        <div class="frame_top">
+          <div class="top_banner">
+              <h4>{{alias}} {{request.session.id}}</h4>
+
+          </div>
+          <div class="top_menu">
+            <a href="/">Home</a> || <a href="/addBook">Add book & Review</a> || <a href="/logout">Logout</a>
+          </div>
+        </div>
+
+        <div class="frame_error">
+          <ul>
+            <li>{% for error in errors%}
+
+              {{error}}
+              {% endfor%}
+            </li>
+          </ul>
+        </div>
+
+        <div class="frame_left">
+          <h2>User Alias: {{users.alias }}</h2>
+          <h3>Name : {{users.name}}</h3>
+          <h4>Email : {{users.email}}</h4>
+          <h4>Total Review: {{total}} </h4>
+          <p></p>
+          <p>Posted review on the following books</p>
+          <ul>
+            {% for r in reviewsBooks %}
+              {% for book in books %}
+                  {% if r.curr_book_id == book.id %}
+                        <li><a href="/books/{{book.id}}">{{book.name}}</a></li>
+                  {%endif %}
+              {% endfor %}
+          {% endfor%}
+          </ul>
+        </div>
+        <div class="frame_right">
+
+        </div>
+    </div>
+  </body>
+</html>
