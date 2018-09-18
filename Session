@@ -12,3 +12,12 @@ if 'id' not in request.session :
         context = {
     
         }
+
+
+# ========================= [ HTML check exist ]==============================
+
+  {% if request.session.id is none %}
+          <a href="/login">Sign In</a>
+         {% else %}
+         <a href="/logout">Log off</a>
+        {%endif%}
