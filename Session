@@ -1,0 +1,14 @@
+
+
+
+# ========================= [ Logout]==============================
+def logout(request):
+    request.session.clear()
+    return redirect('/')
+    
+    
+# ========================= [ check exist ]==============================
+if 'id' not in request.session :
+        context = {
+    
+        }
