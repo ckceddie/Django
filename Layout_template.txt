@@ -1,0 +1,32 @@
+
+[ layout.html ]===============================================
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <title>{% block title %} {% endblock %}</title>
+    {% block head %} {% endblock%}
+  </head>
+  <body>
+    <div class="container">
+      {% block body%}{% endblock%}
+
+    </div>
+  </body>
+</html>
+
+
+
+[ index.html ]===============================================
+
+{% extends './layout.html' %}
+{% block title %} Index - Books Review {% endblock%}
+{% block head %} {% endblock %}
+{% block body %}
+  
+
+{% endblock %}
